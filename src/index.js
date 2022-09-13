@@ -21,9 +21,9 @@ function onSubmitForm(e) {
     resetMarkup()
     newsApiService.feachNews()
         .then(response => {
-        if (response.data.articles === 0) {
-        return Promise.reject(new Error());
-        }
+        // if (response.data.articles.length === 0) {
+        // return Promise.reject(new Error());
+        // }
             renderMarkup(response)
             console.log(response);
         }).catch(err => {
