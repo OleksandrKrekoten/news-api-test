@@ -1,4 +1,4 @@
-import { createMarkup } from "./js/createMarkup"
+
 import NewsApiService from "./js/fetchNewsAPI"
 const newsApiService = new NewsApiService()
 
@@ -7,13 +7,13 @@ const refs = {
     input: document.querySelector('.form-control'),
     submitBtn: document.querySelector('.submitBtn'),
     galleryNews: document.querySelector('.gallery-news'),
-    galleryList : document.querySelector('.gallery-news__list')
+   
     
 }
 
+
 refs.input.addEventListener('input', (e) => { newsApiService.searchQuery = e.target.value })
 refs.form.addEventListener('submit', onSubmitForm)
-
 
 
 function onSubmitForm(e) {
@@ -21,11 +21,8 @@ function onSubmitForm(e) {
     resetMarkup()
     newsApiService.feachNews()
         .then(response => {
-        // if (response.data.articles.length === 0) {
-        // return Promise.reject(new Error());
-        // }
+            console.log(response.data.results)
             renderMarkup(response)
-            console.log(response);
         }).catch(err => {
             console.log(err);
         })
@@ -38,3 +35,16 @@ function renderMarkup(response) {
 function resetMarkup() {
     refs.galleryNews.innerHTML = ''
 }
+   function createMarkup(response) {
+    return response.data.results.map(({backdrop_path,release_date,original_title,poster_path
+}) =>` <a href="/">
+    <img src="https://api.themoviedb.org/3/movie/popular${poster_path}" alt="qweq">
+    <h2>${original_title}</h2>
+    <p>${release_date}</p>
+   </a>`
+   
+    )
+}
+
+
+

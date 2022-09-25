@@ -2,30 +2,30 @@ const axios = require('axios').default;
 
 export default class NewsApiService {
     constructor() {
-        this.searchQuery = 'ukraine'
+        this.URL = 'https://api.themoviedb.org/3/movie/popular'
+        this.searchQuery = ''
         this.per_page = 20
         this.page = 1
     }
    async feachNews() {
-        const URL = 'https://newsapi.org/v2/everything'
+        // const URL = 'https://api.themoviedb.org/3/movie/popular'
        
-      return  axios.get(URL, {
+      return  axios.get(this.URL, {
             params: {
-              apiKey: 'e177b938923543079e116a9aec299619',
-            q: this.searchQuery,
-              pageSize: this.per_page,
-            page: this.page
+             api_key: 'ba12bbb2efd4020faab2c5dd14dc19c0',
+            
+
             }
         })
             
     }
-    incrementPage() { 
-        this.page += 1;
-    }
+    // incrementPage() { 
+    //     this.page += 1;
+    // }
 
-    resetPage() { 
-        this.page = 1;
-    }
+    // resetPage() { 
+    //     this.page = 1;
+    // }
     get query() {
         return this.searchQuery
     }
